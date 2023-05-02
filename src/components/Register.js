@@ -2,6 +2,8 @@ import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from '../api/axios';
+
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -58,8 +60,29 @@ const Register = () => {
             setErrMsg("invalid Input");
             return;
         }
-        setSuccess(true);
-        // make api calls
+        try {
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({ UserName: user, Password: pwd }),//UserName,Password is what the backend expects
+                {
+                    headers: { 'Content-Type': "application/json" },
+                    withCredentials: true
+                }
+            );
+            console.log(response.data);//we dont have to change response to json with axios but have to with fetch
+            console.log(JSON.stringify(response));
+            setSuccess(true);
+            //clear the input fields
+        }
+        catch (err) {
+            if (!err?.response) {
+                setErrMsg('No server response');
+            } else if (err.response?.status === 409) {
+                setErrMsg("Username Taken");
+            } else {
+                setErrMsg('Registeration Failed');
+            }
+            errRef.current.focus();
+        }
     }
 
     return (
@@ -78,6 +101,7 @@ const Register = () => {
                     <p ref={errRef}
                         className={errMsg ? "errmsg" : 'offscreen'}
                         aria-live='assertive'
+                        style={{ color: "red", backgroundColor: "papayawhip", borderRadius: "5px" }}
                     >
                         {errMsg}
                     </p>
