@@ -130,3 +130,10 @@ code {
 .signin_container label {
   margin-top: 10px;
 }
+
+.GoBackFlexGrow {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
