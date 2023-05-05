@@ -14,6 +14,13 @@ code {
     monospace;
 }
 
+.App {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .hide {
   display: none;
 }
@@ -86,4 +93,40 @@ code {
 
 .login {
   margin-left: 10px;
+}
+
+.signin_container {
+  border-radius: 20px;
+  background-color: paleturquoise;
+  right: 0%;
+  width: fit-content;
+  height: fit-content;
+  max-width: 400px;
+  padding: 10px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+}
+
+.signin_container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signin_container button {
+  margin-top: 10px;
+  background: #f2f2f2;
+  border: 0.5px solid rgb(173, 172, 172);
+  border-radius: 3px;
+  width: 275px;
+  font-size: 1.1rem;
+  box-shadow: 2px 2px #888888;
+  height: 50px;
+}
+.signin_container button:focus:not(:active) {
+  background: #d6d5d5;
+  box-shadow: none;
+}
+.signin_container label {
+  margin-top: 10px;
 }

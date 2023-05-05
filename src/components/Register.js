@@ -71,6 +71,9 @@ const Register = () => {
             console.log(response.data);//we dont have to change response to json with axios but have to with fetch
             console.log(JSON.stringify(response));
             setSuccess(true);
+            setUser('');
+            setPwd('');
+            setValidPwd('');
             //clear the input fields
         }
         catch (err) {
@@ -123,7 +126,7 @@ const Register = () => {
                         <input
                             type="text"
                             id='username'
-                            placeholder='Username'
+                            placeholder='Create username'
                             ref={userRef}
                             autoComplete='off'
                             onChange={(e) => setUser(e.target.value)}
@@ -154,7 +157,7 @@ const Register = () => {
                         <br />
                         <input
                             type="password"
-                            placeholder='Password'
+                            placeholder='Create password'
                             id='password'
                             onChange={(e) => setPwd(e.target.value)}
                             required
