@@ -12,7 +12,6 @@ const Unauthorized = () => {
             <div className="GoBackFlexGrow">
                 <button onClick={goback}> Go Back </button>
             </div>
-
         </section>
     )
 }

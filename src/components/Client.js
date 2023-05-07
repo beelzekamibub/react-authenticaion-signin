@@ -1,8 +1,13 @@
-import React from 'react'
-
+import React from 'react';
+import Users from './Users';
 const Client = () => {
     return (
-        <div>Client</div>
+        <section>
+            <h1>Clients</h1>
+            <br />
+            <Users></Users>
+            <br />
+        </section>
     )
 }
 
