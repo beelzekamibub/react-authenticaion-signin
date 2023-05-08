@@ -8,6 +8,7 @@ import Profile from "./components/Profile";
 import Investment from "./components/Investment";
 import Client from "./components/Client"
 import RequireAuth from "./components/RequireAuth";
+import PersistLogin from "./components/PersistLogin";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -21,11 +22,13 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized />}></Route>
 
         {/* protected */}
-        <Route element={<RequireAuth allowedRoles={['Advisor']} />}>
-          <Route path="dashboard" element={<Dashboard />}></Route>
-          <Route path="client" element={<Client />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
-          <Route path="investment" element={<Investment />}></Route>
+        <Route element={<PersistLogin></PersistLogin>}>
+          <Route element={<RequireAuth allowedRoles={['Advisor']} />}>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="client" element={<Client />}></Route>
+            <Route path="profile" element={<Profile />}></Route>
+            <Route path="investment" element={<Investment />}></Route>
+          </Route>
         </Route>
 
         <Route path="*" element={<Missing />}></Route>
